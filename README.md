@@ -1,10 +1,15 @@
-# DevStarter Kit 🎨 (English and French version)
+# DevStarter Kit 🎨 (french in bottom)
 
 ## Objective 🎯
 
-Replace WordPress! 😆 A frontend/backend site with mastered and easily maintainable HTML and CSS.
+Replace WordPress! 😆
+A frontend/backend site with mastered and easily maintainable HTML, CSS and others (thanks Astro).
 Already optimized for SEO and accessibility.
 Allows focusing on branding, design, and content.
+
+### Current Setup
+
+Currently, the site uses Netlify Identity and Decap CMS for authentication and content management. There are issues with entries appearing empty in the backend.
 
 ### Desired Features and Components
 
@@ -64,16 +69,13 @@ Starter site kit for developers and non-developers, reconciling frontend and bac
 - Use CMS for initial content management.
 
 ### Act 2: Expansion 🚀
+- Ensure site maintainability and scalability.
+- Refine all features.
 - Integrate e-commerce, probably with Next.js.
 - Customize authentication with email/password.
 - Develop a custom CMS.
 
-### Act 3: Perfection 🏆
-- Refine all features.
-- Optimize performance and SEO.
-- Ensure site maintainability and scalability.
-
-### Act 4: Future Ideas 🌟
+### Act 3: Future Ideas 🏆
 - Add advanced analytics and reporting.
 - Implement AI-driven recommendations and personalizations.
 - Expand support for multiple languages and internationalization.
@@ -112,50 +114,51 @@ A big thank you to:
 
 I'm not an expert on licenses, so I haven't chosen one. This project does not currently have a license.
 
----
-
 Thank you for your help and understanding! 😊
 
-----------------------------------------------------------------
+---
+
 # Kit de Démarrage Dev 🎨
 
 ## Objectif 🎯
 
-Remplacer WordPress ! 😆 Un site frontend/backend avec un HTML et CSS maîtrisé et maintenable aisément.
-Déjà optimisé pour le référencement naturel et accessible.
-Permet de se concentrer sur son branding, design, et contenu.
+Remplacer WordPress ! 😆 Un site frontend/backend avec un HTML et CSS maîtrisé et maintenable aisément. Déjà optimisé pour le référencement naturel et accessible. Permet de se concentrer sur son branding, design, et contenu.
+
+### Configuration Actuelle
+
+Actuellement, le site utilise Netlify Identity et Decap CMS pour l'authentification et la gestion du contenu. Il y a des problèmes avec les entrées qui apparaissent vides dans le backend.
 
 ### Fonctionnalités et Composants Souhaités
 
-- 📚 Catalogue de composants
-- 🎨 Fichier de constante reliant l'identité du site et les choix graphiques
-- 🖼️ Gestion des images à partir des constantes
-- 🛠️ CMS fonctionnel (entrées non vides)
-- 📬 Formulaires fonctionnels
-- 📄 Intégration du schéma JSON-LD
-- 📑 Pagination
-- 🧭 Fil d'Ariane personnalisable
-- 💬 Système de commentaires
-- 👍 Système de likes
-- ⭐ Système d'avis
-- 🎨 Composants et animations de design
-- 🔐 Authentification personnalisée (email/mot de passe)
-- 🛒 Intégration de l'e-commerce (probablement avec Next.js)
-- 📈 Analyses et rapports avancés
-- 🤖 Recommandations et personnalisations basées sur l'IA
-- 🌍 Support multi-langues et internationalisation
-- 🔌 Intégration avec des services et API tiers supplémentaires
+- 📚 Catalogue de composants (X)
+- 🎨 Fichier de constante reliant l'identité du site et les choix graphiques (X)
+- 🖼️ Gestion des images à partir des constantes (X)
+- 🛠️ CMS fonctionnel (X)
+- 📬 Formulaires fonctionnels (X)
+- 📄 Intégration du schéma JSON-LD (X)
+- 📑 Pagination (X)
+- 🧭 Fil d'Ariane personnalisable (X)
+- 💬 Système de commentaires (X)
+- 👍 Système de likes (X)
+- ⭐ Système d'avis (X)
+- 🎨 Composants et animations de design (X)
+- 🔐 Authentification personnalisée (email/mot de passe) (X)
+- 🛒 Intégration de l'e-commerce (probablement avec Next.js) (X)
+- 📈 Analyses et rapports avancés (X)
+- 🤖 Recommandations et personnalisations basées sur l'IA (X)
+- 🌍 Support multi-langues et internationalisation (X)
+- 🔌 Intégration avec des services et API tiers supplémentaires (X)
 
 ### Types de Pages, Schémas et Collections
 
-- **Page d'Accueil**
-- **Page À propos**
-- **Page Services**
-- **Articles de Blog**
-- **Pages Produit**
-- **Page FAQ**
-- **Section Commentaires**
-- **Avis et Notes**
+- **Page d'Accueil** OK
+- **Page À propos** OK
+- **Page Services** OK
+- **Articles de Blog** OK
+- **Pages Produit** (X)
+- **Page FAQ** (X)
+- **Section Commentaires** (X)
+- **Avis et Notes** (X)
 
 ## Stack Technologique 🛠️
 
@@ -183,16 +186,13 @@ Kit starter site pour les développeurs et non-développeurs, réconciliant le f
 - Utiliser le CMS pour la gestion de contenu initiale.
 
 ### Acte 2 : L'Expansion 🚀
-- Intégrer tout le volet e-commerce, probablement avec Next.js.
-- Personnaliser l'authentification avec une solution email/mot de passe.
+- Assurer la maintenabilité et la scalabilité du site.
+- Affiner toutes les fonctionnalités.
+- Personnaliser l'authentification avec une solution email/mot de passe et profil.
 - Développer un CMS sur mesure.
 
 ### Acte 3 : La Perfection 🏆
-- Affiner toutes les fonctionnalités.
-- Optimiser les performances et le référencement naturel.
-- Assurer la maintenabilité et la scalabilité du site.
-
-### Acte 4 : Idées Futures 🌟
+- Intégrer tout le volet e-commerce, probablement avec Next.js.
 - Ajouter des analyses et des rapports avancés.
 - Mettre en œuvre des recommandations et des personnalisations basées sur l'IA.
 - Étendre la prise en charge de plusieurs langues et l'internationalisation.
@@ -221,9 +221,9 @@ Les contributions sont les bienvenues ! N'hésitez pas à soumettre une pull req
 ## Remerciements 🙏
 
 Un grand merci à :
-- [Astro](https://astro.build/)  pour le framework incroyable.
+- [Astro](https://astro.build/) pour le framework incroyable.
 - [Codestitch](https://codestitch.app/) pour les composants.
-- [CodingPublic](https://www.youtube.com/@CodinginPublic) pour les tutoriels sur Astro.
+- [CodingPublic](https://www.youtube.com/@CodinginPublic)pour les tutoriels sur Astro.
 - [Kevin Powell](https://www.youtube.com/kevinpowell) pour les tutoriels CSS.
 - [OpenAI](https://www.openai.com/) et ChatGPT-4 pour l'aide à la création de ce projet.
 
@@ -234,5 +234,4 @@ Je ne suis pas expert en licences, donc je n'ai pas choisi de licence. Ce projet
 ---
 
 Merci pour votre aide et votre compréhension ! 😊
-
 
