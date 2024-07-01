@@ -1,4 +1,4 @@
-# DevStarter Kit 🎨 (french in bottom)
+# DevStarter Kit (french in bottom)
 
 ## Objective 🎯
 
@@ -118,7 +118,7 @@ Thank you for your help and understanding! 😊
 
 ---
 
-# Kit de Démarrage Dev 🎨
+# Kit de Démarrage Dev
 
 ## Objectif 🎯
 
