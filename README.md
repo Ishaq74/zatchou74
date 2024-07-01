@@ -1,23 +1,34 @@
+# Zatchou74 🎨
 
-Hey guys, i'm very bad at managing github and repos, sorry :(
+## Introduction 🌟
 
-Feel free to help if you understand what i'm trying to do !
+Salut à tous ! Je suis vraiment mauvais pour gérer GitHub et les dépôts, désolé 😅
 
-It works with const and collections, 
-i still don't know which database use, for now i use netlify identity and decap cms.
+N'hésitez pas à m'aider si vous comprenez ce que j'essaie de faire ! 🙏
 
+Ce projet utilise des constantes et des collections. Je ne sais toujours pas quelle base de données utiliser. Pour l'instant, j'utilise Netlify Identity et Decap CMS.
 
-TO DO LIST :
+## Liste des Tâches à Faire 📝
 
-- Images from const are not working when deployed on netlify.
-- Make working the CMS ( entries are empty)
-- Make forms working
-- Integrate schema json-ld
+1. 🖼️ **Les images provenant des constantes ne fonctionnent pas lorsqu'elles sont déployées sur Netlify.**
+2. 🛠️ **Faire fonctionner le CMS (les entrées sont vides).**
+3. 📬 **Faire fonctionner les formulaires.**
+4. 📄 **Intégrer le schéma JSON-LD.**
 
-After tests are OK,
+## Étapes Futures 🚀
 
-FUTURE STEPS :
+1. 🔑 **Changer Netlify Identity avec une authentification personnalisée (email/mot de passe).**
+2. 🖥️ **Customiser le CMS.**
+3. 🛒 **Intégrer l'e-commerce (probablement avec Next.js).**
 
-- Change netlify identity with custom auth (email/password).
-- Custom CMS
-- Integrate Ecommerce (Next.js i think)
+## Contributions 🤝
+
+Les contributions sont les bienvenues ! N'hésitez pas à soumettre une pull request ou à ouvrir une issue pour discuter des changements proposés.
+
+## Licence 📜
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+Merci pour votre aide et votre compréhension ! 😊
