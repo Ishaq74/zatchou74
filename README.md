@@ -106,7 +106,7 @@ Contributions are welcome! Feel free to submit a pull request or open an issue t
 A big thank you to:
 - [Astro](https://astro.build/) for the amazing framework.
 - [Codestitch](https://codestitch.app/) for the free components.
-- [CodingPublic](https://www.youtube.com/@CodinginPublic) for the tutorials on Astro.
+- [CodinginPublic](https://www.youtube.com/@CodinginPublic) for the tutorials on Astro.
 - [Kevin Powell](https://www.youtube.com/kevinpowell) for the CSS tutorials.
 - [OpenAI](https://www.openai.com/) and ChatGPT-4 for the assistance in creating this project.
 
@@ -223,7 +223,7 @@ Les contributions sont les bienvenues ! N'hésitez pas à soumettre une pull req
 Un grand merci à :
 - [Astro](https://astro.build/) pour le framework incroyable.
 - [Codestitch](https://codestitch.app/) pour les composants.
-- [CodingPublic](https://www.youtube.com/@CodinginPublic)pour les tutoriels sur Astro.
+- [CodinginPublic](https://www.youtube.com/@CodinginPublic)pour les tutoriels sur Astro.
 - [Kevin Powell](https://www.youtube.com/kevinpowell) pour les tutoriels CSS.
 - [OpenAI](https://www.openai.com/) et ChatGPT-4 pour l'aide à la création de ce projet.
 
