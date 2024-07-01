@@ -1,0 +1,150 @@
+---
+import { Image, Picture } from "astro:assets";
+import BannerImage from '../../assets/web-design1.webp';
+
+export interface Props {
+    title?: string;
+    text?: string;
+    link_url?: string;
+    link_text?: string;
+    image?: string;
+    altimage?: string;
+    align?: 'left' | 'center' | 'right';
+}
+
+const {
+    title = 'Nom de la Page',
+    text = "Obtenez les résultats que vous méritez rapidement grâce à notre coaching personnalisé.",
+    link_url = '/contact',
+    link_text = 'En savoir plus',
+    image = BannerImage,
+    altimage = "illustration du cabinet de l'entreprise",
+    align = 'center', // Default alignment
+} = Astro.props as Props;
+
+const alignmentClass = align === 'left' ? 'flex-left' : align === 'right' ? 'flex-right' : 'flex-center';
+---
+
+<section id="hero-82">
+    <div class={alignmentClass}>
+        <h1 class="cs-title">{title}</h1>
+        <p class="cs-text">
+            {text} 
+        </p>
+        <a href={link_url} class="cs-button-solid">{link_text}</a>
+    </div>
+
+    <!-- Background Image -->
+    <Picture
+    class="cs-background"
+    src={image} 
+    alt={altimage}
+    loading={"eager"}
+    format={"webp"}
+    width={2250}
+    height={1500} />
+</section>
+
+<style>
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #hero-82 {
+        padding: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
+        position: relative;
+        z-index: 1;
+    }
+    #hero-82 .cs-background {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        object-fit: cover;
+    }
+    #hero-82 .cs-background img:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.7;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+    #hero-82 .cs-background img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    #hero-82 .cs-container {
+        width: 100%;
+        max-width: 67.5rem;
+        margin: auto;
+    }
+    #hero-82 .cs-title {
+        font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+        font-weight: 700;
+        line-height: 1.2em;
+        max-width: 51.8125rem;
+        color: #fff;
+        position: relative;
+    }
+    #hero-82 .cs-title:after {
+        content: "";
+        width: 6.25rem;
+        height: 0.5rem;
+        margin: clamp(1rem, 4vw, 1.5rem) auto clamp(1rem, 4vw, 1.5rem);
+        background: var(--primary);
+        opacity: 1;
+        position: relative;
+        display: block;
+    }
+    #hero-82 .cs-text {
+        font-size: clamp(1rem, 1.95vw, 1.5625rem);
+        line-height: 1.5em;
+        width: 100%;
+        max-width: clamp(29rem, 60vw, 50rem);
+        margin-bottom: clamp(2.5rem, 4vw, 3rem);
+        color: #fff;
+    }
+    #hero-82 .cs-button-solid {
+        font-size: 1rem;
+        line-height: 3.5rem;
+        text-decoration: none;
+        font-weight: 700;
+        color: #fff;
+        padding: 0 1.5rem;
+        background-color: var(--primary);
+        border-radius: 0.25rem;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+    }
+    #hero-82 .cs-button-solid:before {
+        content: "";
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: #000;
+        opacity: 1;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 0.25rem;
+        transition: width 0.3s;
+    }
+    #hero-82 .cs-button-solid:hover:before {
+        width: 100%;
+    }
+}
+</style>

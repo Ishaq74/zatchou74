@@ -1,0 +1,87 @@
+---
+// Importation des composants nécessaires
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Grid from '../../components/Elements/Grid/Grid.astro';
+import Carousel1 from '../../components/Carousel/Carousel1.astro';
+import Link1 from '../../components/Elements/Link/Link1.astro';
+import Container from '../../components/Container/Container1.astro';
+import PostCard1 from '../../components/Card/Post/PostCard1.astro';
+
+import { getCollection } from "astro:content";
+import Blog from "../../components/Section/Blog.astro";
+const posts = await getCollection("posts");
+
+import { 
+  DEFAULT_TITLE, 
+  DEFAULT_DESCRIPTION, 
+  DEFAULT_KEYWORDS, 
+  DEFAULT_AUTHOR, 
+  DEFAULT_OG_IMAGE, 
+  DEFAULT_PREFETCH_URLS,
+  DEFAULT_CSS_FILES,
+  DEFAULT_JS_FILES,
+  DEFAULT_LANG,
+  FAVICON_ICO,
+  FAVICON_32x32,
+  FAVICON_16x16,
+  APPLE_TOUCH_ICON,
+  MANIFEST,
+  ROBOTS_CONTENT,
+  THEME_COLOR
+} from '../../const';
+
+// Déclaration des constantes pour la page
+const pageTitle = "Blog - Mon Site Incroyable";
+const pageDescription = "Page d'accueil du Blog avec Astro.";
+const pageKeywords = "blog, astro, cms, site web";
+const pageAuthor = "Votre Nom";
+const pageOgImage = "/images/og-home.jpg";
+const pageCanonicalUrl = ""; // Will default to current URL
+const pagePrefetchUrls = ["/images/feature1.jpg", "/images/feature2.jpg"];
+const pageCssFiles = ["/styles/home.css", ...DEFAULT_CSS_FILES];
+const pageJsFiles = ["/scripts/home.js", ...DEFAULT_JS_FILES];
+const pageLang = "fr"; // or other language
+const pageRobots = "noindex, nofollow";
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={pageDescription} 
+  keywords={pageKeywords} 
+  author={pageAuthor} 
+  ogImage={pageOgImage} 
+  canonicalUrl={pageCanonicalUrl} 
+  prefetchUrls={pagePrefetchUrls}
+  cssFiles={pageCssFiles}
+  jsFiles={pageJsFiles}
+  lang={pageLang}
+  robots={pageRobots}
+>
+
+<section id="blog">
+  <Container 
+    topper="Dernières Nouvelles et Articles" 
+    title="Blog" 
+    description="Découvrez les dernières nouvelles et articles de notre blog."
+    class="cs-container"
+    paddingTop="40px"
+  >
+    <ul class="cs-list">
+      <Grid
+        columnsDesktop={3}
+        columnsTablet={2}
+        columnsMobile={1}
+        minColumnWidthDesktop="300px"
+        minColumnWidthTablet="200px"
+        minColumnWidthMobile="150px"
+        gap="24px"
+        backgroundColor="transparent"
+      >
+      {posts.slice(0, 3).map((p) => <PostCard1 post={p} />)}
+      </Grid> 
+    </ul>
+  </Container>
+  <div class="cs-bubbles" aria-hidden="true"></div>
+</section>
+
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+// Importation des composants nécessaires
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grid from '../components/Elements/Grid/Grid.astro';
+import Link1 from '../components/Elements/Link/Link1.astro';
+import Container from '../components/Container/Container1.astro';
+import Picture from 'astro/components/Picture.astro';
+import Logo  from 'assets/images/logo.png';
+
+
+import PostBanner from "../components/BannerPage/PostBanner.astro";
+  import Timeline from "../components/Timeline/Timeline1.astro";
+  import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs1.astro";
+  import Stats from "../components/Stats/Stats1.astro";
+
+import { 
+  DEFAULT_TITLE, 
+  DEFAULT_DESCRIPTION, 
+  DEFAULT_KEYWORDS, 
+  DEFAULT_AUTHOR, 
+  DEFAULT_OG_IMAGE, 
+  DEFAULT_PREFETCH_URLS,
+  DEFAULT_CSS_FILES,
+  DEFAULT_JS_FILES,
+  DEFAULT_LANG,
+  FAVICON_ICO,
+  FAVICON_32x32,
+  FAVICON_16x16,
+  APPLE_TOUCH_ICON,
+  MANIFEST,
+  ROBOTS_CONTENT,
+  THEME_COLOR
+} from '../const';
+import Container1 from '../components/Container/Container1.astro';
+
+// Déclaration des constantes pour la page
+const pageTitle = "Blog - Mon Site Incroyable";
+const pageDescription = "Page d'accueil du Blog avec Astro.";
+const pageKeywords = "blog, astro, cms, site web";
+const pageAuthor = "Votre Nom";
+const pageOgImage = "/images/og-home.jpg";
+const pageCanonicalUrl = ""; // Will default to current URL
+const pagePrefetchUrls = ["/images/feature1.jpg", "/images/feature2.jpg"];
+const pageCssFiles = ["/styles/home.css", ...DEFAULT_CSS_FILES];
+const pageJsFiles = ["/scripts/home.js", ...DEFAULT_JS_FILES];
+const pageLang = "fr"; // or other language
+const pageRobots = "noindex, nofollow";
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={pageDescription} 
+  keywords={pageKeywords} 
+  author={pageAuthor} 
+  ogImage={pageOgImage} 
+  canonicalUrl={pageCanonicalUrl} 
+  prefetchUrls={pagePrefetchUrls}
+  cssFiles={pageCssFiles}
+  jsFiles={pageJsFiles}
+  lang={pageLang}
+  robots={pageRobots}
+>
+
+<PostBanner
+showCredit={false}
+showExtra={false}
+title="À propos"
+image=https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/agency-presentation.png
+altimage="yest alt"
+/>
+
+<section id="À propos">
+  <WhyChooseUs />
+</section>
+<section id="stats">
+      <Stats />
+</section>
+<section id="timeline">
+      <Timeline />
+    </section>
+</BaseLayout>

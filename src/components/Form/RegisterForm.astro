@@ -1,0 +1,33 @@
+---
+import InputField from './InputField.astro';
+import Button from './ButtonForm.astro';
+import Link from '../Elements/Link/Link1.astro';
+---
+<div class="register-container flex-center">
+  <slot/>
+  <form id="registerForm" action="/api/auth/register" method="post">
+    <div id="error-message" class="error-message" style="display: none;"></div>
+    <InputField id="email" label="Email" type="email" required={true} />
+    <InputField id="password" label="Mot de passe" type="password" required={true} />
+    <Button label="S'enregistrer" />
+  </form>
+</div>
+
+<style>
+.register-container {
+  background: white;
+  border: 2px solid #000;
+  padding: 20px;
+  padding-block: 40px;
+  width: 320px;
+  box-shadow: 10px 10px 0 #000;
+  text-align: center;
+  margin-block: 3rem;
+  margin-inline: auto;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+</style>

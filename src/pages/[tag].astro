@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import BasicLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/Container/Container1.astro";
+import Grid from "../components/Elements/Grid/Grid.astro";
+import PostCard1 from "../components/Card/Post/PostCard1.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BasicLayout>
+<section id="blog">
+    <Container 
+        topper="Dernières Nouvelles et Articles" 
+        title={`Catégorie ${tag}`} 
+        description={`Découvrez nos 4 derniers articles en lien avec ${tag}.`}
+        class="cs-container"
+        paddingTop="40px"
+    >
+        <ul class="cs-list">
+        <Grid
+            columnsDesktop={3}
+            columnsTablet={2}
+            columnsMobile={1}
+            minColumnWidthDesktop="300px"
+            minColumnWidthTablet="200px"
+            minColumnWidthMobile="150px"
+            gap="24px"
+            backgroundColor="transparent"
+        >
+        {posts && posts.map(post => ( <PostCard1 post={post} /> ))}
+        </Grid> 
+        </ul>
+    </Container>
+    <div class="cs-bubbles" aria-hidden="true"></div>
+</section>
+</BasicLayout>

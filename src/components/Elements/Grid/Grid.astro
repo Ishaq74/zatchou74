@@ -1,0 +1,74 @@
+---
+// Grid.astro
+const {
+  columnsDesktop = 4,
+  columnsTablet = 2,
+  columnsMobile = 1,
+  gap = 'var(--gap-default)',
+  backgroundColor = 'var(--background-color-default)',
+  title = '',
+  subtitle = '',
+  description = '',
+  titleAlign = 'left',
+  subtitleAlign = 'left',
+  descriptionAlign = 'left',
+  children,
+} = Astro.props;
+---
+
+<style>
+
+section {
+    padding: var(--sectionPadding);
+}
+  .grid-container {
+    display: grid;
+    gap: var(--gap);
+    background-color: var(--background-color);
+  }
+
+
+  @media (min-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .grid-container {
+      grid-template-columns: repeat(var(--columns-tablet), 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .grid-container {
+      grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    }
+  }
+
+  .title {
+    text-align: var(--title-align);
+    margin: 1em 0;
+  }
+
+  .subtitle {
+    text-align: var(--subtitle-align);
+    margin: 0.5em 0;
+  }
+
+  .description {
+    text-align: var(--description-align);
+    margin: 1em 0;
+    color: #666;
+  }
+</style>
+
+<section>
+  {subtitle && <div class="subtitle" style={`--subtitle-align: ${subtitleAlign};`}>{subtitle}</div>}
+  {title && <h2 class="title" style={`--title-align: ${titleAlign};`}>{title}</h2>}
+  {description && <p class="description" style={`--description-align: ${descriptionAlign};`}>{description}</p>}
+  <div class="grid-container"
+       style={`--columns-desktop: ${columnsDesktop}; --columns-tablet: ${columnsTablet}; --columns-mobile: ${columnsMobile}; --gap: ${gap}; --background-color: ${backgroundColor};`}>
+    <slot />
+  </div>
+</section>

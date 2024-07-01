@@ -1,0 +1,124 @@
+---
+
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  text?: string;
+  href: string;
+  ariaLabel: string;
+  style?: "link" | "button";
+  icon?: {
+    name: string;
+    side: "left" | "right";
+  };
+  background?: string;
+  border?: boolean;
+  shadow?: boolean;
+  shape?: "sharp" | "rounded" | "circle";
+  classes?: string;
+}
+
+const { text, href, ariaLabel, style, icon, background = false, border = false, shadow = false, shape = "sharp", classes, ...rest } = Astro.props as Props;
+---
+
+<a
+  href={href}
+  aria-label={ariaLabel}
+  class={`link ${style} ${background ? 'custom-background' : ''} ${border ? 'border-visible' : ''} ${shadow ? 'shadow' : ''} ${shape} ${classes}`}
+  style={background ? `background-color: ${background};` : ''}
+  {...rest}
+>
+  {icon && icon.side === 'left' && (
+    <Icon name={icon.name} />
+  )}
+
+<slot />
+
+  {icon && icon.side === 'right' && (
+    <Icon name={icon.name} />
+  )}
+</a>
+
+<style>
+  .link {
+    text-decoration: none;
+    color: var(--bodyTextColor);
+    padding: 0.5em 1em;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    margin-block: 0.5em;
+  }
+
+  /* Style par défaut pour les liens "link" */
+  .link.link {
+    color: var(--link);
+    background-color: transparent;
+    border: none;
+  }
+
+  .link.link:before {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: var(--link);
+    opacity: 1;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s;
+  }
+
+  .link.link:hover:before {
+    width: 100%;
+  }
+
+  /* Style par défaut pour les liens "button" */
+  .link.button {
+    background-color: var(--secondary);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.32);
+  }
+
+  .link.button:hover {
+    color: var(--bodyTextColor);
+    background-color: var(--secondaryLight);
+    box-shadow: none;
+    border: solid 1px black;
+  }
+
+  .link.button:active {
+    background-color: var(--link);
+  }
+
+  .link.border-visible {
+    border: 1px solid currentColor;
+  }
+
+  .link.shadow {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.33);
+  }
+
+  .link.sharp {
+    border-radius: 0;
+  }
+
+  .link.rounded {
+    border-radius: 5px;
+  }
+
+  .link.circle {
+    border-radius: 50px;
+  }
+
+  .link.custom-background {
+    background-color: var(--background-color);
+  }
+
+  svg {
+    margin: 0 0.5em;
+  }
+</style>

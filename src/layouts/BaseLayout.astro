@@ -1,0 +1,246 @@
+---
+import Footer1 from '../components/Footer/Footer1.astro';
+import Header1 from '../components/Header/Header1.astro';
+import { 
+  DEFAULT_TITLE, 
+  DEFAULT_DESCRIPTION, 
+  DEFAULT_KEYWORDS, 
+  DEFAULT_AUTHOR, 
+  DEFAULT_OG_IMAGE, 
+  DEFAULT_PREFETCH_URLS,
+  DEFAULT_CSS_FILES,
+  DEFAULT_JS_FILES,
+  DEFAULT_LANG,
+  FAVICON_ICO,
+  FAVICON_32x32,
+  FAVICON_16x16,
+  APPLE_TOUCH_ICON,
+  MANIFEST,
+  ROBOTS_CONTENT,
+  THEME_COLOR
+} from '../const.ts';
+
+// Using the current URL as the default canonical URL if not provided
+const { url } = Astro.request;
+const { 
+  title = DEFAULT_TITLE, 
+  description = DEFAULT_DESCRIPTION, 
+  keywords = DEFAULT_KEYWORDS, 
+  author = DEFAULT_AUTHOR, 
+  ogImage = DEFAULT_OG_IMAGE, 
+  canonicalUrl = url, 
+  prefetchUrls = DEFAULT_PREFETCH_URLS, 
+  cssFiles = DEFAULT_CSS_FILES, 
+  jsFiles = DEFAULT_JS_FILES,
+  lang = DEFAULT_LANG,
+  robots = ROBOTS_CONTENT
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Title and Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content={keywords}>
+    <meta name="author" content={author}>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Prefetch URLs -->
+    { prefetchUrls.map(url => (
+      <link rel="prefetch" href={url} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+    ))}
+    
+    <!-- Styles and Fonts -->
+    { cssFiles.map(file => (
+      <link rel="stylesheet" href={file} />
+    ))}
+    <link rel="preload" href="/fonts/your-font.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <!-- Favicon -->
+    <link rel="icon" href={FAVICON_ICO}>
+    <link rel="apple-touch-icon" sizes="180x180" href={APPLE_TOUCH_ICON}>
+    <link rel="icon" type="image/png" sizes="32x32" href={FAVICON_32x32}>
+    <link rel="icon" type="image/png" sizes="16x16" href={FAVICON_16x16}>
+    <link rel="manifest" href={MANIFEST}>
+    
+    <!-- Accessibility and SEO -->
+    <meta name="robots" content={robots}>
+    <meta name="theme-color" content={THEME_COLOR}>
+    
+    <!-- Custom Scripts -->
+    { jsFiles.map(file => (
+      <script async src={file}></script>
+    ))}
+  </head>
+  <body>
+    <Header1 />
+    <slot />
+    <Footer1 />
+
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Add these styles to your global stylesheet, which is used across all site pages. You only need to do this once. All elements in the library derive their variables and base styles from this central sheet, simplifying site-wide edits. For instance, if you want to modify how your h2's appear across the site, you just update it once in the global styles, and the changes apply everywhere. */
+    --primary: #f8825e;
+    --primaryLight: #faaf99;
+    --secondary: #fdc25b;
+    --secondaryLight: #ffd181;
+    --transparent: transparent;
+    --background-color-light: #ffd181;
+    --headerColor: #f8825e;
+    --topperColor: #fdc25b;
+    --bodyTextColor: #4e4b66;
+    --bodyTextColorWhite: #fafbfc;
+    --colorDark: #1a1a1a;
+    --gap-default: 16px;
+    --gap-large: 24px;
+    /* 13px - 16px */
+    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
+    /* 31px - 49px */
+    --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
+    --bodyFontSize: 1.25rem;
+    /* 60px - 100px top and bottom */
+    --sectionPadding: 1rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    /* prevents padding from affecting height and width */
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+}
+
+.cs-topper {
+  font-size: var(--topperFontSize);
+  line-height: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.cs-title {
+  font-size: var(--headerFontSize);
+  font-weight: 900;
+  line-height: 1.2em;
+  max-width: 43.75rem;
+  margin: 0 0 1rem 0;
+  color: var(--primary);
+}
+
+.cs-text {
+  font-size: var(--bodyFontSize);
+  line-height: 1.5em;
+  width: 100%;
+  max-width: 40.625rem;
+  margin: 0;
+  color: var(--bodyTextColor);
+}
+
+.cs-list {
+  min-width: 100%;
+}
+
+
+.cs-bubbles {
+    width: 20.0625rem;
+    height: 26.4375rem;
+    display: none;
+    position: absolute;
+    top: 66.4375rem;
+    right: -8.75rem;
+    z-index: -1;
+}
+.cs-bubbles:before {
+    /* white border bubble */
+    content: "";
+    width: 16.5rem;
+    height: 16.5rem;
+    background: transparent;
+    opacity: 1;
+    border: 1px solid #1a1a1a;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation-name: floatAnimation;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+.cs-bubbles:after {
+    /* orange bubble */
+    content: "";
+    width: 16.5rem;
+    height: 16.5rem;
+    background: var(--primary);
+    opacity: 0.1;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    animation-name: floatAnimation2;
+    animation-duration: 14s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    .cs-bubbles {
+        display: block;
+    }
+}
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    .cs-bubbles {
+        top: 17.5625rem;
+    }
+}
+/* Large Desktop - 1300px */
+@media only screen and (min-width: 81.25rem) {
+    .cs-bubbles {
+        margin-right: -61.875rem;
+        right: 50%;
+    }
+}
+</style>

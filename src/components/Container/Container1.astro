@@ -1,0 +1,78 @@
+---
+const { 
+  topper, 
+  title, 
+  description, 
+  class: className, 
+  style: inlineStyle, 
+  paddingTop = '10px', 
+  paddingRight = '10px', 
+  paddingBottom = '10px', 
+  paddingLeft = '10px', 
+  marginTop = '0', 
+  marginRight = 'auto', 
+  marginBottom = '0', 
+  marginLeft = 'auto', 
+  topperAlign = 'center',  // Nouvelle prop pour l'alignement du topper
+  titleAlign = 'center',   // Nouvelle prop pour l'alignement du titre
+  descriptionAlign = 'center', // Nouvelle prop pour l'alignement de la description
+  contentAlign = 'center', // Nouvelle prop pour l'alignement du contenu du slot
+  topperStyle = '',
+  titleStyle = '',
+  descriptionStyle = '',
+  gap = 'var(--gap, 0.25rem)', // Nouvelle prop pour le gap
+  background = 'transparent' // Nouvelle prop pour le background
+} = Astro.props;
+
+// Générer les classes d'alignement
+const alignmentClasses = {
+  topper: `align-${topperAlign}`,
+  title: `align-${titleAlign}`,
+  description: `align-${descriptionAlign}`,
+  content: `align-${contentAlign}`
+};
+---
+
+<div 
+  class={`container ${className ?? ''} ${alignmentClasses.content}`} 
+  style={`padding-top: ${paddingTop}; padding-right: ${paddingRight}; padding-bottom: ${paddingBottom}; padding-left: ${paddingLeft}; margin-top: ${marginTop}; margin-right: ${marginRight}; margin-bottom: ${marginBottom}; margin-left: ${marginLeft}; gap: ${gap}; background: ${background}; ${inlineStyle ?? ''}`}
+>
+  {topper && <span class={`cs-topper ${alignmentClasses.topper}`} style={topperStyle}>{topper}</span>}
+  {title && <h2 class={`cs-title ${alignmentClasses.title}`} style={titleStyle}>{title}</h2>}
+  {description && <p class={`cs-text ${alignmentClasses.description}`} style={descriptionStyle}>{description}</p>}
+  <slot />
+</div>
+
+<style>
+.container {
+  width: 100%;
+  max-width: var(--maxWidth, 1280px); /* Default to 1280px on desktop */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 0.5rem);
+}
+
+/* Alignement du contenu */
+.align-left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.align-center {
+  text-align: center;
+  align-items: center;
+}
+
+.align-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+  .container {
+    max-width: 80rem;
+  }
+}
+</style>

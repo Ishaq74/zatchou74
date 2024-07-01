@@ -1,0 +1,73 @@
+---
+import Grid from '../Elements/Grid/Grid.astro'
+
+import Container from '../Container/Container1.astro'
+---
+
+
+<section id="Partners">
+    <Container 
+    paddingTop="40px"
+    paddingBottom="40px"
+    PaddingLeft="10px"
+    PaddingRight="10px"
+    class="cs-container"
+  >
+      <Grid
+        columnsDesktop={4}
+        columnsTablet={4}
+        columnsMobile={2}
+        minColumnWidthDesktop="300px"
+        minColumnWidthTablet="200px"
+        minColumnWidthMobile="150px"
+        gap="24px"
+        backgroundColor="transparent"
+      >
+      <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="logo" width="100%" loading="lazy" decoding="async">
+      <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="logo" width="100%" loading="lazy" decoding="async">
+      <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" alt="logo" width="100%" loading="lazy" decoding="async">
+      <img class="cs-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="logo" width="100%" loading="lazy" decoding="async">
+      </Grid> 
+  </Container>
+
+<style>
+    /* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #logos-572 {
+        /* 60px - 130px */
+        padding: clamp(3.75rem, 8vw, 8.125rem) 1rem;
+        background-color: var(--secondary);
+    }
+    #logos-572 .cs-container {
+        width: 100%;
+        max-width: 80rem;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        /* 48px - 64px */
+        gap: clamp(3rem, 6vw, 4rem);
+    }
+    #logos-572 .cs-logo {
+        width: auto;
+        max-width: 90%;
+        height: auto;
+        margin: 0;
+        display: block;
+    }
+}
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #logos-572 .cs-container {
+        justify-content: space-between;
+    }
+    #logos-572 .cs-logo {
+        width: 20%;
+        /* the max width becomes whatever the actual width of the image is */
+        max-width: max-content;
+        height: auto;
+        display: block;
+    }
+}
+</style>

@@ -1,0 +1,125 @@
+---
+import Container from '../../Container/Container1.astro'
+import Grid from '../../Elements/Grid/Grid.astro'
+import  { Picture }  from "astro:assets";
+import type { CollectionEntry } from 'astro:content';
+
+type Props = {
+    commentaire: CollectionEntry<"commentaires">;
+};
+
+const { commentaire } = Astro.props;
+const { nom, photo, job, texte, note } = commentaire.data;
+
+---
+
+      <li class="cs-item">
+        <!--Blue Quote-->
+        <img class="cs-stars" aria-hidden="true" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Reviews/stars3.svg" decoding="async" alt="quote icon" width="189" height="24">
+        <p class="cs-item-text">
+            {texte}
+        </p>
+        <div class="cs-flex-group">
+            <picture class="cs-picture">
+                <Picture
+                class="cs-profile"
+                src={photo}
+                alt={nom}
+                format={"webp"}
+                loading={"eager"}
+                width={50}
+                height={50} />
+            </picture>
+            <span class="cs-name">
+                Vera Robinson
+                <span class="cs-job">{job}</span>
+            </span>
+        </div>
+    </li>
+
+<style>
+    /* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+      .cs-item {
+        list-style: none;
+        width: 100%;
+        max-width: 39.375rem;
+        /* 32px - 60px top & bottom */
+        /* 16px - 48px left & right */
+        padding: clamp(2rem, 6.15vw, 3.75rem) clamp(1rem, 4.15vw, 3rem);
+        background-color: var(--secondaryLight);
+        /* prevents padding from adding to height and width */
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+        border-radius:15px;
+    }
+      .cs-stars {
+        /* 169px - 189px */
+        width: clamp(10.5625rem, 20vw, 11.8125rem);
+        height: auto;
+        /* 20px - 24px */
+        margin-bottom: clamp(1.25rem, 3vw, 1.5rem);
+        display: block;
+    }
+      .cs-item-text {
+        /* 14px - 16px */
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        line-height: 1.5em;
+        margin: 0;
+        /* 40px - 64px */
+        margin-bottom: clamp(2.5rem, 8vw, 4rem);
+        color: var(--colorDark);
+    }
+      .cs-flex-group {
+        /* in case one card has more text than the other, this pushes up against the review text so the name and title are always at the bottom. Only works if parent is a flexbox */
+        margin-top: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1.25rem;
+    }
+      .cs-profile {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        /* clips image corners to make circle */
+        overflow: hidden;
+        position: relative;
+        display: block;
+    }
+      .cs-profile img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        /* makes the image behave like a background image */
+        object-fit: cover;
+    }
+      .cs-name {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.5em;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        color: var(--primary);
+        display: block;
+    }
+      .cs-job {
+        /* 13px - 16px */
+        font-size: clamp(0.8125rem, 1.6vw, 1rem);
+        line-height: 1.2em;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin: 0;
+        color: var(--colorDark);
+        display: block;
+    }
+}
+
+</style>

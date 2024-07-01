@@ -1,0 +1,215 @@
+---
+import  { Picture }  from "astro:assets";
+import { Icon } from 'astro-icon/components';
+import MapImage from '../assets/images/map.jpg';
+import BasicLayout from "../layouts/BaseLayout.astro";
+import PostBanner from "../components/BannerPage/PostBanner.astro";
+import ContactForm from "../components/Form/ContactForm.astro";
+import Container from "../components/Container/Container1.astro";
+import Grid from "../components/Elements/Grid/Grid.astro";
+
+import { DEFAULT_ADDRESS, DEFAULT_EMAIL, DEFAULT_PHONE, GOOGLE_MAPS, IMAGE_MAPS } from '../const.ts';
+---
+<BasicLayout>
+    <PostBanner
+    showCredit={false}
+    showExtra={false}
+    title="Contact"
+    image=https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/agency-presentation.png
+    altimage="yest alt"
+/>
+<section id="contact">
+    <Container 
+    topper="Formulaire de Contact" 
+    title="Contactez-moi"
+    description="N'hésitez pas à me contacter pour toute question ou demande de devis. Je vous répondrais dans les plus brefs délais."
+    class="cs-container"
+    paddingTop="40px"
+  >
+  <Grid
+  columnsDesktop={2}
+  columnsTablet={2}
+  columnsMobile={1}
+  minColumnWidthDesktop="300px"
+  minColumnWidthTablet="200px"
+  minColumnWidthMobile="150px"
+  gap="24px"
+>
+        <ContactForm />
+        <div class="cs-right-section">
+            <ul class="cs-ul">
+                <li class="cs-li">
+                    <Icon name="mdi:mailbox-up" width={36} height={36} class="cs-icon cs-icon-wrapper" color="var(--primaryLight)" />
+                    <div class="cs-flex-group">
+                        <span class="cs-header">Email</span>
+                        <a href={`mailto:${DEFAULT_EMAIL}`} class="cs-link">{ DEFAULT_EMAIL }</a>
+                    </div>
+                </li>
+                <li class="cs-li">
+                    <Icon name="mdi:phone-classic" width={36} height={36} class="cs-icon cs-icon-wrapper" color="var(--primaryLight)" />
+                    <div class="cs-flex-group">
+                        <span class="cs-header">Téléphone</span>
+                        <a href={`tel:${DEFAULT_EMAIL}`} class="cs-link">{ DEFAULT_PHONE }</a>
+                    </div>
+                </li>
+                <li class="cs-li">
+                    <Icon name="mdi:map-marker-radius" width={36} height={36} class="cs-icon cs-icon-wrapper" color="var(--primaryLight)" />
+                    <div class="cs-flex-group">
+                        <span class="cs-header">Adresse</span>
+                        <a href={GOOGLE_MAPS} class="cs-link">{ DEFAULT_ADDRESS }</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- Picture -->
+            <Picture 
+            class:list={["cs-picture"]}
+            src={MapImage}
+            alt="map location"
+            width="462"
+            height="438"
+            decoding="async"
+            loading={"eager"}
+            />
+        </div>
+</Grid>
+
+    </Container>
+</section>
+</BasicLayout>
+
+<style>
+
+.cs-icon:hover {
+ color: var(--primary);
+}
+    /* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+     .cs-right-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        /* 28px - 40px */
+        gap: clamp(1.75rem, 4vw, 2.5rem);
+        position: relative;
+    }
+     .cs-ul {
+        padding: 0;
+        /* 16px - 32px */
+        padding-left: clamp(1rem, 3vw, 2rem);
+        margin: 0;
+        width: 100%;
+        /* prevents padding from adding to height and width */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+     .cs-li {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+     .cs-li:hover .cs-icon-wrapper {
+        transform: scale(1.2);
+    }
+     .cs-li:nth-of-type(2) {
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid #dad9e3;
+    }
+     .cs-header {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-weight: 700;
+        line-height: 1.2em;
+        margin-bottom: 0.5rem;
+        color: var(--headerColor);
+        display: block;
+        text-align: left;
+    }
+     .cs-link {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.2em;
+        text-decoration: none;
+        color: var(--bodyTextColor);
+        position: relative;
+    }
+     .cs-link:hover:before {
+        width: 100%;
+    }
+     .cs-link:before {
+        /* top right box */
+        content: "";
+        width: 0%;
+        height: 2px;
+        /* current color of parent */
+        background: currentColor;
+        opacity: 1;
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s;
+    }
+     .cs-block {
+        /* drop the address to two lines */
+        display: block;
+    }
+     .cs-icon-wrapper {
+        /* 32px - 36px */
+        margin-right: clamp(2rem, 2.5vw, 2.25rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* prevents flexbox from squishing it */
+        flex: none;
+        transition: transform 0.3s;
+    }
+     .cs-icon {
+        /* 32px -36px */
+        width: clamp(2rem, 3vw, 2.25rem);
+        height: auto;
+        display: block;
+    }
+     .cs-picture {
+        width: 100%;
+        border-radius: clamp(1rem, 1.5vw, 1.25rem);
+        /* clips image corners */
+        overflow: hidden;
+        display: block;
+        position: relative;
+        /* width divided height */
+        aspect-ratio: 1.44;
+    }
+     .cs-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+     .cs-right-section {
+        max-width: 33.875rem;
+        /* prevents flexbox from squishing it */
+        flex: none;
+        flex-direction: column;
+    }
+     .cs-block {
+        /* sets address stay in one line */
+        display: inline-block;
+    }
+     .cs-picture {
+        width: 100%;
+        max-width: 100%;
+        height: 27.375rem;
+    }
+}
+</style>

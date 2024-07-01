@@ -1,0 +1,60 @@
+---
+import BasicLayout from "../layouts/BaseLayout.astro";
+import LoginForm from "../components/Form/LoginForm.astro";
+import Link from "../components/Elements/Link/Link1.astro";
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
+---
+
+<BasicLayout title="Connexion">
+    <LoginForm>
+      <h1>Connexion</h1>
+      <p>Vous souhaitez vous inscrire ?</p>
+      <Link href="/inscription" icon={{name:"mdi:user-plus", side:"right"}} ariaLabel="Aller à la page d'inscription" text="Inscription" style="button" shape={"circle"}}>
+      Inscription</Link>
+    </LoginForm>
+</BasicLayout>
+
+<script>
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; Secure; SameSite=Strict';
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const form = event.target as HTMLFormElement;
+  const formData = new FormData(form);
+  const errorMessageDiv = document.getElementById('error-message') as HTMLElement;
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      errorMessageDiv.textContent = result.message;
+      errorMessageDiv.style.display = 'block';
+    } else if (result.success) {
+      setCookie('sb-access-token', result.access_token, 7);
+      setCookie('sb-refresh-token', result.refresh_token, 7);
+      window.location.href = '/dashboard';
+    }
+  } catch (error) {
+    errorMessageDiv.textContent = "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.";
+    errorMessageDiv.style.display = 'block';
+  }
+});
+</script>
+
+

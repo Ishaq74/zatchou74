@@ -1,0 +1,177 @@
+---
+interface AtoutService {
+  title: string;
+  text: string;
+  icon?: string;
+}
+
+interface Props {
+  atoutsservices?: AtoutService[];
+}
+
+const { atoutsservices }: Props = Astro.props;
+---
+
+{atoutsservices && atoutsservices.length > 0 && (
+  <ul class="cs-faq-group">
+    {atoutsservices.map((atout) => (
+      <li class="cs-faq-item">
+        <button class="cs-button">
+          {atout.icon && (
+            <img class="cs-icon" aria-hidden="true" loading="lazy" decoding="async" src={atout.icon} alt="icon" width="32" height="32" />
+          )}
+          <span class="cs-button-text">{atout.title}</span>
+          <span class="cs-indicator" aria-hidden="true"></span>
+        </button>
+        <p class="cs-item-p">{atout.text}</p>
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+    /* Mobile - 360px */
+    @media only screen and (min-width: 0rem) {
+         .cs-faq-group {
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          /* 16px - 20px */
+          gap: clamp(1rem, 2.4vw, 1.25rem);
+        }
+         .cs-faq-item {
+          list-style: none;
+          width: 100%;
+          background-color: transparent;
+          border: 1px solid #e8e8e8;
+          padding: 0;
+          box-sizing: border-box;
+          transition: border-bottom 0.3s;
+        }
+         .cs-faq-item.active .cs-indicator:before {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+         .cs-faq-item.active .cs-indicator:after {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+         .cs-faq-item.active .cs-item-p {
+          height: auto;
+          padding-top: 1rem;
+          opacity: 1;
+          transform: scaleY(1);
+        }
+         .cs-faq-item:hover {
+          cursor: pointer;
+        }
+         .cs-button {
+          /* 16px - 20px */
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          line-height: 1.2em;
+          text-align: left;
+          font-weight: bold;
+          width: 100%;
+          padding: 1rem 1rem 0 1rem;
+          border: none;
+          background: transparent;
+          color: var(--headerColor);
+          overflow: hidden;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          /* 16px - 24px */
+          gap: clamp(1rem, 2.5vw, 1.5rem);
+          position: relative;
+          transition: background-color 0.3s, color 0.3s;
+        }
+         .cs-button:hover {
+          cursor: pointer;
+        }
+         .cs-indicator {
+          width: 1.5rem;
+          height: 1.5rem;
+          position: relative;
+          z-index: 1;
+        }
+         .cs-indicator:before {
+          /* left line */
+          content: '';
+          width: 1rem;
+          height: 0.125rem;
+          background-color: #767676;
+          opacity: 1;
+          border-radius: 2px;
+          position: absolute;
+          display: block;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: transform .5s;
+        }
+         .cs-indicator:after {
+          /* right line */
+          content: '';
+          width: 1rem;
+          height: 0.125rem;
+          background-color: #767676;
+          opacity: 1;
+          border-radius: 2px;
+          position: absolute;
+          display: block;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(90deg);
+          transition: transform .5s;
+        }
+         .cs-button-text {
+          width: 90%;
+          padding: 0;
+          display: block;
+        }
+         .cs-item-p {
+          font-size: 0.875rem;
+          line-height: 1.5em;
+          width: 100%;
+          max-width: none;
+          height: 0;
+          margin: 0;
+          /* 16px - 24px */
+          padding: 0 1rem 1rem 1rem;
+          /* prevents padding and border from affecting height and width */
+          box-sizing: border-box;
+          opacity: 0;
+          color: var(--bodyTextColor);
+          /* clips the text so it doesn't show up */
+          overflow: hidden;
+          position: relative;
+          transition: opacity 0.3s, padding-bottom 0.3s, padding-top 0.3s;
+        }
+         .cs-icon {
+          width: 2rem;
+          height: 2rem;
+          display: block;
+        }
+    }
+      /* Small Desktop - 1024px */
+      @media only screen and (min-width: 64rem) {
+         .cs-floater {
+          width: 28.1875rem;
+          right: clamp(50%, 18vw, 75%);
+          bottom: -6.25rem;
+        }
+      }
+    </style>
+    
+    <script>
+        // FAQ toggle code
+    const faqItems = Array.from(document.querySelectorAll('.cs-faq-item'));
+            for (const item of faqItems) {
+                const onClick = () => {
+                item.classList.toggle('active')
+            }
+            item.addEventListener('click', onClick)
+            }
+    </script>

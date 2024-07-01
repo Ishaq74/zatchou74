@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+import FaqAtoutService from "./FaqAtoutService.astro";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const services = await getCollection("services");
+    return services.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry }
+    }))
+}
+
+interface AtoutService {
+    title: string;
+    text: string;
+    icon?: string;
+  }
+  
+  interface Props {
+    entry: CollectionEntry<"services">;
+    atoutsservices?: AtoutService[];
+  }
+  
+  const { entry, atoutsservices }: Props = Astro.props;
+  const { Content } = await entry.render();
+  ---
+  
+  <section id="services-1666">
+    <div class="cs-container">
+      <div class="cs-image-group">
+        <picture class="cs-picture">
+          <!--Mobile Image-->
+          <source media="(max-width: 600px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/people-standing.jpeg">
+          <!--Tablet and above Image-->
+          <source media="(min-width: 601px)" srcset="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/people-standing.jpeg">
+          <img loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/People/people-standing.jpeg" alt="people standing" width="605" height="690">
+        </picture>
+        <!--SVG Graphic-->
+        <img class="cs-floater" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Graphics/white-swirl.svg" alt="graphic" loading="lazy" decoding="async" height="710" aria-hidden="true" width="690">
+      </div>
+      <div class="cs-content">
+        <span class="cs-topper">Nos Services</span>
+        <h2 class="cs-title">Recrutement Gagnant avec Rahma : La Clé de Votre Succès</h2>
+        <Content />
+        {atoutsservices && atoutsservices.length > 0 && (
+          <FaqAtoutService atoutsservices={atoutsservices} />
+        )}
+      </div>
+    </div>
+  </section>
+
+<style>
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #services-1666 {
+      padding: var(--sectionPadding);
+      background-color: #f7f7f7;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    #services-1666 .cs-container {
+      width: 100%;
+      /* changes to 1280px at small desktop */
+      max-width: 36.5rem;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* 40px - 64px */
+      gap: clamp(2.5rem, 3.9vw, 4rem);
+    }
+    #services-1666 .cs-image-group {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      position: relative;
+    }
+    #services-1666 .cs-picture {
+      width: 100%;
+      min-height: 20.5rem;
+      display: block;
+      position: relative;
+    }
+    #services-1666 .cs-picture img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #services-1666 .cs-floater {
+      width: clamp(20.125rem, 40vw, 28.1875rem);
+      height: clamp(20.1875rem, 40vw, 28.25rem);
+      position: absolute;
+      bottom: 0rem;
+      z-index: 1;
+      mix-blend-mode: soft-light;
+    }
+    #services-1666 .cs-content {
+      text-align: left;
+      width: 100%;
+      max-width: 40.625rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      flex: none;
+    }
+    #services-1666 .cs-title {
+      /* 16px - 24px */
+      margin: 0 0 clamp(1rem, 1.96vw, 1.5rem) 0;
+    }
+    #services-1666 .cs-text {
+      /* 16px - 24px */
+      margin: 0 0 clamp(1rem, 1.96vw, 1.5rem) 0;
+    }
+    #services-1666 .cs-button-solid {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+      text-align: center;
+      text-decoration: none;
+      width: clamp(11.625rem, 23vw, 13.625rem);
+      /* 28px - 40px */
+      margin: clamp(1.75rem, 3.9vw, 2.5rem) 0 0 0;
+      /* prevents padding from affecting height and width */
+      box-sizing: border-box;
+      padding: 0 1.5rem;
+      color: #fff;
+      background-color: var(--primary);
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+    #services-1666 .cs-button-solid:before {
+      content: "";
+      width: 0%;
+      height: 100%;
+      background: #000;
+      opacity: 1;
+      /* add a border radius below this to round corners */
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: width 0.3s;
+    }
+    #services-1666 .cs-button-solid:hover:before {
+      width: 100%;
+    }
+  }
+  /* Tablet - 768px */
+  @media only screen and (min-width: 48rem) {
+    #services-1666 .cs-picture {
+      height: 100%;
+      min-width: 36.5rem;
+      width: 48vw;
+      right: 0;
+      top: 0;
+    }
+  }
+  /* Small Desktop - 1024px */
+  @media only screen and (min-width: 64rem) {
+    #services-1666 .cs-container {
+      max-width: 80rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+    #services-1666 .cs-content {
+      width: 55%;
+    }
+    #services-1666 .cs-image-group {
+      width: 100%;
+      max-width: 33.875rem;
+    }
+    #services-1666 .cs-picture {
+      width: 100%;
+      min-width: 100%;
+    }
+    #services-1666 .cs-floater {
+      width: 28.1875rem;
+      right: clamp(50%, 18vw, 75%);
+      bottom: -6.25rem;
+    }
+  }
+</style>

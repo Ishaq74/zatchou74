@@ -1,0 +1,59 @@
+---
+import BannerImage from '../../assets/web-design1.webp';
+
+export interface Props {
+    subtitle?: string;
+    title?: string;
+    text?: string;
+    align?: 'left' | 'center' | 'right';
+}
+
+const {
+    subtitle = 'Our Services',
+    title = 'Nom de la Page',
+    text = "Obtenez les résultats que vous méritez rapidement grâce à notre coaching personnalisé.",
+    align = 'center', // Default alignment
+} = Astro.props as Props;
+
+const alignmentClass = align === 'left' ? 'flex-left' : align === 'right' ? 'flex-right' : 'flex-center';
+---
+<section id="wrap">
+        <div class={alignmentClass}>
+            <span class="cs-topper">{subtitle}</span>
+            <h2 class="cs-title">{title}</h2>
+            <p class="cs-text">
+                {text}
+            </p>
+        </div>
+            <slot />
+</section>
+
+<style>
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #wrap .cs-container {
+        width: 100%;
+        /* changes to 1440px on desktop */
+        max-width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* 48px - 64px */
+        gap: 1rem;
+    }
+
+
+    #wrap .cs-title {
+        max-width: 30ch;
+    }
+}
+
+/* Desktop - 1300px */
+@media only screen and (min-width: 81.25rem) {
+    #swrap .cs-container {
+        max-width: 90rem;
+    }
+}
+
+</style>

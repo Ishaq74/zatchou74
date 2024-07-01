@@ -1,0 +1,56 @@
+---
+interface Props {
+  text: string;
+  href: string;
+  ariaLabel: string;
+  style: "primary" | "secondary";
+  icon?: {
+    name: string;
+    side: "left" | "right";
+  };
+  isFilled?: boolean;
+  borderVisible?: boolean;
+  shadow?: boolean;
+  classes?: string;
+}
+const { text, href, ariaLabel, style, icon, isFilled = false, borderVisible = false, shadow = false, classes, ...rest} = Astro.props as Props;
+---
+
+<button></button>
+
+<button 
+      
+        id="myButton" 
+        class="btn" 
+        name="exampleButton" 
+        value="ClickMe" 
+        disabled 
+        title="Ceci est un bouton"
+        aria-label="Cliquez-moi"
+        >
+</button>
+
+<button
+type="button"
+={href}
+class:list={[
+  "link",
+  classes,
+  style,
+  {
+    filled: isFilled, border: borderVisible}
+]}
+{...rest}>
+  aria-label={ariaLabel}
+</button>
+
+<style>
+  .cs-button-solid cs-nav-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+// Importation des composants nécessaires
+import Container from '../Container/Container1.astro';
+import Link from '../Elements/Link/Link1.astro';
+import { whyChooseUs } from '../../const.ts';
+import Grid from '../Elements/Grid/Grid.astro';
+---
+
+<Grid
+  columnsDesktop={2}
+  columnsTablet={1}
+  columnsMobile={1}
+  minColumnWidthDesktop="300px"
+  minColumnWidthTablet="200px"
+  minColumnWidthMobile="150px"
+  gap="24px"
+  backgroundColor="transparent"
+>
+  <!-- Colonne de gauche -->
+  <Container 
+    topper={whyChooseUs.subtitle} 
+    title={whyChooseUs.title}
+    description={whyChooseUs.description}
+    paddingLeft="10px"
+    paddingRight="10px"
+    titleAlign="left"
+    descriptionAlign="left"
+    contentAlign="left"
+    gap="0.25rem"
+    class="cs-container"
+  >
+    <ul class="cs-ul">
+      {whyChooseUs.reasons.map((reason) => (
+        <li class="cs-li">
+          <h3 class="cs-h3">
+            <img class="cs-icon" aria-hidden="true" src={reason.icon} loading="lazy" decoding="async" alt="icon" width="17" height="18">
+            {reason.title}
+          </h3>
+          <p class="cs-item-text">{reason.text}</p>
+        </li>
+      ))}
+    </ul>
+    <Link ariaLabel={whyChooseUs.button_aria_label} href={whyChooseUs.button_link} style="button"> 
+      {whyChooseUs.button_text} 
+    </Link>
+  </Container>
+
+  <!-- Colonne de droite -->
+
+    <Grid
+      columnsDesktop={2}
+      columnsTablet={2}
+      columnsMobile={2}
+      minColumnWidthDesktop="100px"
+      minColumnWidthTablet="100px"
+      minColumnWidthMobile="150px"
+      gap="2px"
+      backgroundColor="transparent"
+    >
+      {whyChooseUs.images.map((image, index) => (
+        <picture class={`cs-picture cs-picture${index + 1}`}>
+          <source media="(max-width: 600px)" srcset={image.src}>
+          <source media="(min-width: 601px)" srcset={image.src}>
+          <img loading="lazy" decoding="async" src={image.src} alt={image.alt} width="306" height="360">
+        </picture>
+      ))}
+    </Grid>
+    <!-- Zig Zag Graphic -->
+
+</Grid>
+
+<style>
+.cs-container {
+  padding: 10px;
+}
+
+img {
+    width: 100%;
+   
+}
+
+.cs-content {
+  text-align: left;
+  width: 100%;
+  max-width: 33.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cs-color {
+  color: var(--primary);
+}
+
+.cs-text {
+  margin-bottom: 1rem;
+}
+
+.cs-text:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.cs-ul {
+  width: 100%;
+  margin: 1rem 0 2rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.cs-li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-h3 {
+  font-size: 1.25rem;
+  line-height: 1.2em;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--headerColor);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cs-icon {
+  width: 1.0625rem;
+  height: auto;
+  margin-top: 0.25rem;
+}
+
+.cs-item-text {
+  font-size: 0.875rem;
+  line-height: 1.5em;
+  text-align: left;
+  margin: 0;
+  color: var(--bodyTextColor);
+}
+
+.cs-image-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cs-picture {
+  width: 100%;
+  height: auto;
+}
+
+.cs-graphic {
+  margin-top: 1rem;
+}
+
+#why-choose-682 .cs-graphic {
+        display: none;
+    }
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #why-choose-682 .cs-graphic {
+        width: 61.4375em;
+        height: auto;
+        display: block;
+        position: absolute;
+        bottom: 10.3125em;
+        right: -2em;
+        z-index: -1;
+    }
+}
+</style>

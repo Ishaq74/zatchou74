@@ -1,0 +1,86 @@
+---
+import { getCollection } from "astro:content";
+import PostCard from "../../components/Card/PostCard.astro";
+import Container from "./WrapCentered.astro";
+const posts = await getCollection("posts");
+---
+
+<Container subtitle="Blog" title="Nos derniers articles" text="Découvrez nos 4 derniers articles.">
+    <div class="flex-center">
+        <ul class="grid grid-3">
+            {posts.slice(0, 4).map((p) => <PostCard post={p} />)}
+        </ul>
+    </div>
+    <div class="cs-bubbles" aria-hidden="true"></div>
+</Container>
+
+<style>
+    @media only screen and (min-width: 0rem) {
+        #blog-1347 .cs-bubbles {
+            width: 20.0625rem;
+            height: 26.4375rem;
+            display: none;
+            position: absolute;
+            top: 66.4375rem;
+            right: -8.75rem;
+            z-index: -1;
+        }
+        #blog-1347 .cs-bubbles:before {
+            /* white border bubble */
+            content: "";
+            width: 16.5rem;
+            height: 16.5rem;
+            background: transparent;
+            opacity: 1;
+            border: 1px solid #1a1a1a;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            animation-name: floatAnimation;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+        }
+        #blog-1347 .cs-bubbles:after {
+            /* orange bubble */
+            content: "";
+            width: 16.5rem;
+            height: 16.5rem;
+            background: var(--primary);
+            opacity: 0.1;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            animation-name: floatAnimation2;
+            animation-duration: 14s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+        }
+    }
+    /* Tablet - 768px */
+    @media only screen and (min-width: 48rem) {
+        #blog-1347 .cs-bubbles {
+            display: block;
+        }
+    }
+    /* Desktop - 1024px */
+    @media only screen and (min-width: 64rem) {
+        #blog-1347 .cs-bubbles {
+            top: 17.5625rem;
+        }
+    }
+    /* Large Desktop - 1300px */
+    @media only screen and (min-width: 81.25rem) {
+        #blog-1347 .cs-bubbles {
+            margin-right: -61.875rem;
+            right: 50%;
+        }
+    }
+    </style>

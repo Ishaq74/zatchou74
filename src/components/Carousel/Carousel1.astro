@@ -1,0 +1,86 @@
+
+<div class="carousel">
+    <button class="btn" id="prev">&#10096;</button>
+    <button class="btn" id="next">&#10097;</button>
+    <ul>
+      <li class="slide">
+        <img src="https://placehold.co/400" alt="image carousel">
+      </li>
+      <li class="slide active">
+        <img src="https://placehold.co/400" alt="image carousel">
+      </li>
+      <li class="slide">
+        <img src="https://placehold.co/400" alt="image carousel">
+      </li>
+    </ul>
+  </div>
+
+<style>
+.carousel {
+    height: fit-content;
+  position: relative;
+}
+.carousel button {
+  position: absolute;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 2.6rem;
+  z-index: 2;
+  cursor: pointer;
+  color: rgb(243, 241, 241);
+  transform: translateY(-50%);
+  top: 50%;
+}
+#prev {
+  left: 5px;
+}
+#next {
+  right: 5px;
+}
+.carousel li {
+  list-style: none;
+}
+.slide {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+}
+.slide.active {
+  opacity: 1;
+}
+.slide img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+</style>
+
+
+
+
+
+<script>
+const buttons = document.querySelectorAll(".btn");
+const slides = document.querySelectorAll(".slide");
+
+// Tableau d'image : [0, 1, 2]
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const calcNextSlide = e.target.id === "next" ? 1 : -1;
+    const slideActive = document.querySelector(".active");
+
+    newIndex = calcNextSlide + [...slides].indexOf(slideActive);
+
+    if (newIndex < 0) newIndex = [...slides].length - 1;
+    if (newIndex >= [...slides].length) newIndex = 0;
+    slides[newIndex].classList.add("active");
+
+    slideActive.classList.remove("active");
+  });
+});
+</script>

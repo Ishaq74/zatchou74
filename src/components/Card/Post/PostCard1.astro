@@ -1,0 +1,189 @@
+---
+import { Icon } from 'astro-icon/components';
+import Link from '../../../components/Elements/Link/Link1.astro';
+import  { Picture }  from "astro:assets";
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import { formatDate } from '../../../utils/formatDate.ts';
+
+type Props = {
+    post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const { author, description, title, date } = post.data;
+
+const authorData = await getEntry('team', author.slug);
+const formattedDate = formatDate(date.toString());
+---
+
+<li class="cs-item">
+    <a class="cs-link" href={"/blog/" + post.slug}>
+            <Picture
+            class="cs-picture"
+            src={post.data.image}
+            alt={title}
+            format={"webp"}
+            loading={"eager"}
+            inferSize={true}/>
+        <div class="cs-item-text">
+            <h3 class="cs-h3">
+                {title}
+                <Icon class="cs-icon-wrapper cs-icon" name="mdi:arrow-top-right" color="var(--primary)" width={48} height={48} />
+            </h3>
+            <div class="cs-info">
+                <span class="cs-date">
+                    <Icon class="cs-date-icon" name="mdi:calendar-month" color="var(--primary)" width={24} height={24} />
+                    Par {authorData?.data.name} le {formattedDate}
+                </span>
+                <span class="cs-category">
+                    <Link classes="fit-content" href={post.data.tags} ariaLabel="voir la catégorie" background="var(--secondary)" shape="circle" >{post.data.tags}</Link>
+                </span>
+            </div>
+        </div>
+    </a>
+</li>
+
+<style>
+
+.fit-content {
+    min-width: fit-content;
+}
+
+.cs-item {
+    list-style: none;
+}
+
+.cs-item:hover .cs-item-text {
+    background-color: var(--primaryLight);
+}
+.cs-item:hover .cs-icon-wrapper {
+    border-color: #fff;
+}
+.cs-item:hover .cs-icon,
+.cs-item:hover .cs-date-icon{
+    filter: brightness(1000%) grayscale(1);
+}
+.cs-item:hover .cs-icon {
+    transform: rotate(45deg);
+}
+.cs-item:hover .cs-category::before {
+    background-color: #fff;
+    opacity: 0.2;
+}
+.cs-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    /* if one card has more content then the others, the card will stretch to fill the parent container */
+    flex-grow: 1;
+    gap: 1rem;
+}
+.cs-picture {
+    width: 100%;
+    height: 20rem;
+    margin: 0;
+    border-radius: 1.5rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    object-fit: cover;
+}
+.cs-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.cs-item-text {
+    padding: 1.25rem;
+    background-color: #f7f7f7;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* makes the item text the element that grows to fill the container */
+    flex-grow: 1;
+    transition: background-color 0.3s;
+}
+.cs-h3 {
+    /* 20px - 25px */
+    font-size: clamp(1.25rem, 1.8vw, 1.5625rem);
+    line-height: 1.2em;
+    text-align: left;
+    margin: 0;
+    color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.3s;
+}
+.cs-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid #bababa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* prevents the parent flexbox from shrinking the icon */
+    flex-shrink: 0;
+    transition: border-color 0.3s;
+}
+.cs-icon {
+    width: auto;
+    transition:
+        filter 0.3s,
+        transform 0.3s;
+}
+.cs-info {
+    margin: 1rem 0 0;
+    padding: 1rem 0 0;
+    border-top: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cs-date {
+    font-size: 0.875rem;
+    line-height: 1.5em;
+    text-align: left;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+.cs-date-icon {
+    width: auto;
+    height: 1.5rem;
+    transition: filter 0.3s;
+}
+.cs-category {
+    font-size: 0.875rem;
+    /* centers the text if the category bullet has to span multiple lines */
+    text-align: center;
+    padding: 0.25rem 1rem;
+    color: #1a1a1a;
+    border-radius: 5rem;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background-color: var(--secondary);
+}
+.cs-category::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: var(--secondary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+</style>

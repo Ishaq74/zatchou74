@@ -1,0 +1,31 @@
+---
+// Importation des composants nécessaires
+import Container1 from '../components/Container/Container1.astro';
+import Link1 from '../components/Elements/Link/Link1.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+
+---
+<BaseLayout>
+<main>
+    <Container1 
+    title="Cette page n'existe pas." 
+    topper="404 NOT FOUND"
+    description="Rendez vous sur la page d'accueil."
+    paddingTop="40px"
+    paddingBottom="40px"
+    >
+      <Link1 href="/" style="button" icon={{name: 'mdi:arrow-left', side: 'left'}} ariaLabel="Retour à la page d'accueil">Retour</Link1>
+    </Container1>
+</main>
+</BaseLayout>
+
+<style>
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+</style>
