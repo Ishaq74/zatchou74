@@ -1,0 +1,129 @@
+local_backend: true
+
+backend:
+  name: git-gateway
+  commit_messages:
+    create: Create {{collection}} “{{slug}}”
+    update: Update {{collection}} “{{slug}}”
+    delete: Delete {{collection}} “{{slug}}”
+    uploadMedia: Upload “{{path}}”
+    deleteMedia: Delete “{{path}}”
+    openAuthoring: '{{message}}'
+
+media_folder: "src/assets/images"
+public_folder: "src/assets/images"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Rating (scale of 1-5)", name: "rating", widget: "number" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "services"
+    label: "Services"
+    folder: "src/content/services"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "select", options: ["Catégorie 1", "Catégorie 2", "Catégorie 3"] }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Icon", name: "icon", widget: "string", required: false }
+      - label: "Atouts Services"
+        name: "atoutsservices"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Icon", name: "icon", widget: "image", required: false }
+
+  - name: "posts"
+    label: "Posts"
+    folder: "src/content/posts"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "select", options: ["Catégorie 1", "Catégorie 2", "Catégorie 3"] }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "relation", collection: "team", search_fields: ["name"], value_field: "name", display_fields: ["name"] }
+      - { label: "Related Posts", name: "relatedPosts", widget: "relation", collection: "posts", search_fields: ["title"], value_field: "title", display_fields: ["title"], multiple: true, required: false }
+
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "URL", name: "url", widget: "string" }
+
+  - name: "service"
+    label: "Service"
+    folder: "src/content/service"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "select", options: ["Catégorie 1", "Catégorie 2", "Catégorie 3"] }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Service Type", name: "serviceType", widget: "string" }
+      - label: "Provider"
+        name: "provider"
+        widget: "object"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "LocalBusiness" }
+          - { label: "Name", name: "name", widget: "string" }
+      - label: "Has Offer Catalog"
+        name: "hasOfferCatalog"
+        widget: "list"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "OfferCatalog" }
+          - { label: "Name", name: "name", widget: "string" }
+          - label: "Item List Element"
+            name: "itemListElement"
+            widget: "list"
+            fields:
+              - { label: "Type", name: "type", widget: "hidden", default: "Offer" }
+              - label: "Item Offered"
+                name: "itemOffered"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "hidden", default: "Service" }
+                  - { label: "Name", name: "name", widget: "string" }
+      - label: "Area Served"
+        name: "areaServed"
+        widget: "object"
+        fields:
+          - { label: "Type", name: "type", widget: "hidden", default: "State" }
+          - { label: "Name", name: "name", widget: "string" }
+      - label: "Item Service"
+        name: "itemservice"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Icon", name: "icon", widget: "image", required: false }
+
+  - name: "commentaires"
+    label: "Commentaires"
+    folder: "src/content/commentaires"
+    create: true
+    fields:
+      - { label: "Nom", name: "nom", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Ville", name: "ville", widget: "string", required: false }
+      - { label: "Job", name: "job", widget: "string", required: false }
+      - { label: "Catégorie", name: "categorie", widget: "select", options: ["Catégorie1", "Catégorie2", "Catégorie3"] }
+      - { label: "Note", name: "note", widget: "number" }
+      - { label: "Texte", name: "texte", widget: "markdown" }
