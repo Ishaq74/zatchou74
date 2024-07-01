@@ -46,11 +46,10 @@ Currently, the site uses Netlify Identity and Decap CMS for authentication and c
 ## Tech Stack 🛠️
 
 - **Frontend**: [Astro](https://astro.build/)
-- **Backend**: Node.js, Netlify Functions
-- **CMS**: Decap CMS (formerly Netlify CMS)
+- **CMS**: Decap CMS (for now)
 - **Authentication**: Netlify Identity (for now)
 - **Deployment**: Netlify
-- **Styles**: CSS, with tutorials from [Kevin Powell](https://www.youtube.com/kevinpowell)
+- **Styles**: CSS
 
 ## Utility 🌟
 
@@ -163,11 +162,10 @@ Actuellement, le site utilise Netlify Identity et Decap CMS pour l'authentificat
 ## Stack Technologique 🛠️
 
 - **Frontend** : [Astro](https://astro.build/)
-- **Backend** : Node.js, Netlify Functions
-- **CMS** : Decap CMS (anciennement Netlify CMS)
+- **CMS** : Decap CMS pour l'instant (anciennement Netlify CMS)
 - **Authentification** : Netlify Identity (pour l'instant)
 - **Déploiement** : Netlify
-- **Styles** : CSS, avec des tutoriels de [Kevin Powell](https://www.youtube.com/kevinpowell)
+- **Styles** : CSS
 
 ## Utilité 🌟
 
