@@ -7,6 +7,8 @@ A frontend/backend site with mastered and easily maintainable HTML, CSS and othe
 Already optimized for SEO and accessibility.
 Allows focusing on branding, design, and content.
 
+Demo : https://zatchou74.netlify.app/
+
 ### Current Setup
 
 Currently, the site uses Netlify Identity and Decap CMS for authentication and content management. There are issues with entries appearing empty in the backend.
