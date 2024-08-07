@@ -11,6 +11,8 @@ Allows focusing on branding, design, and content.
 
 Currently, the site uses Netlify Identity and Decap CMS for authentication and content management. There are issues with entries appearing empty in the backend.
 
+The final test is with Storyblok and visual editing
+
 ### Desired Features and Components
 
 - 📚 Catalog of components (X)
